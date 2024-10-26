@@ -9,7 +9,7 @@
       >
         <h3>{{ video.title }}</h3>
         <p>{{ video.description }}</p>
-      </li>
+      </li>/
     </ul>
   </div>
 </template>

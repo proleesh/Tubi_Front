@@ -4,6 +4,8 @@ import UploadVideo from '../components/UploadVideo.vue';
 import VideoList from '../components/VideoList.vue';
 import VideoDetail from '../components/VideoDetail.vue';
 import Register from "../components/Register.vue";
+import Profile from "../components/Profile.vue";
+import Chat from "../components/Chat.vue";
 
 const routes = [
     { path: '/', redirect: '/login' },
@@ -15,6 +17,8 @@ const routes = [
     },
     { path: '/videos', name: 'VideoList', component: VideoList },
     { path: '/videos/:id', name: 'VideoDetail', component: VideoDetail, props: true },
+    { path: '/profile', name: 'Profile', component: Profile, meta: { requiresAuth: true } },
+    { path: '/chat', name: 'Chat', component: Chat }
 ]
 
 const router = createRouter({
@@ -25,7 +29,7 @@ const router = createRouter({
 router.beforeEach((to, from, next) => {
     const token = localStorage.getItem('token');
     if (to.matched.some(record => record.meta.requiresAuth) && !token) {
-        alert('Please login first');
+        alert('사용할려면 먼저 로그인 하세요!!!');
         next('/login');
     } else {
         next();

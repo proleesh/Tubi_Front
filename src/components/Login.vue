@@ -30,8 +30,10 @@ export default {
           password: this.password,
         });
         localStorage.setItem("token", response.data.token);
-        this.$router.push("/videos");
+        localStorage.setItem("user", JSON.stringify(response.data.user));
+        this.$router.push("/profile");
       } catch (error) {
+        alert("비밀번호 또는 아이디가 정확하지 않습니다.");
         console.error("로그인 실패: ", error);
       }
     },

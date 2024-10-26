@@ -4,6 +4,8 @@
     <button @click="goTo('/register')">회원가입</button>
     <button @click="goTo('/upload-video')">비디오 업로드</button>
     <button @click="goTo('/videos')">비디오 리스트</button>
+    <button @click="goTo('/profile')">나의 페이지</button>
+    <button @click="goTo('/chat')">채팅방</button>
   </div>
   <router-view />
 </template>
