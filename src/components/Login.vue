@@ -1,9 +1,16 @@
 <template>
   <div>
     <h1>Login</h1>
-    <input v-model="username" placeholder="유저네임" />
-    <input v-model="password" type="password" placeholder="패스워드" />
-    <button @click="login">로그인</button>
+    <form @submit.prevent="login">
+      <input v-model="username" placeholder="유저네임" required />
+      <input
+        v-model="password"
+        type="password"
+        placeholder="패스워드"
+        required
+      />
+      <button type="submit">로그인</button>
+    </form>
   </div>
 </template>
 <script>
@@ -19,7 +26,7 @@ export default {
     async login() {
       try {
         const response = await axios.post("http://localhost:3000/users/login", {
-          usename: this.username,
+          username: this.username,
           password: this.password,
         });
         localStorage.setItem("token", response.data.token);

@@ -31,8 +31,15 @@ export default {
       formData.append("title", this.title);
       formData.append("description", this.description);
 
+      const token = localStorage.getItem("token");
+
       try {
-        await axios.post("http://localhost:3000/videos/upload", formData);
+        await axios.post("http://localhost:3000/videos/upload", formData, {
+          headers: {
+            Authorization: `Bearer ${token}`,
+            "Content-Type": "multipart/form-data",
+          },
+        });
         alert("비디오 업로드 성공");
       } catch (error) {
         console.error("업로드 실패", error);

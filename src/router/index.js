@@ -9,7 +9,10 @@ const routes = [
     { path: '/', redirect: '/login' },
     { path: '/login', name: 'Login', component: Login },
     { path: '/register', name: 'Register', component: Register },
-    { path: '/upload-video', name: 'UploadVideo', component: UploadVideo },
+    {
+        path: '/upload-video', name: 'UploadVideo', component: UploadVideo,
+        meta: { requiresAuth: true }
+    },
     { path: '/videos', name: 'VideoList', component: VideoList },
     { path: '/videos/:id', name: 'VideoDetail', component: VideoDetail, props: true },
 ]
@@ -19,4 +22,13 @@ const router = createRouter({
     routes
 })
 
+router.beforeEach((to, from, next) => {
+    const token = localStorage.getItem('token');
+    if (to.matched.some(record => record.meta.requiresAuth) && !token) {
+        alert('Please login first');
+        next('/login');
+    } else {
+        next();
+    }
+})
 export default router

@@ -2,13 +2,14 @@
   <div>
     <h1>Membership Registration</h1>
     <form @submit.prevent="register">
-      <input v-model="username" placeholder="유저네임" required />
+      <input v-model="username" type="text" placeholder="유저네임" required />
       <input
         v-model="password"
         type="password"
         placeholder="패스워드"
         required
       />
+      <input v-model="nickname" type="text" placeholder="닉네임" required />
       <button type="submit">가입</button>
     </form>
   </div>
